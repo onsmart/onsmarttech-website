@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste da Logo - OnSmart Tech</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo-test {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #20B2AA;
+            border-radius: 10px;
+            background: #2a2a2a;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #4CAF50;
+            color: white;
+        }
+        .error {
+            background: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste da Logo OnSmart Tech</h1>
+    
+    <div class="logo-test">
+        <h2>Logo PNG:</h2>
+        <img src="/onsmarttech.png" alt="OnSmart Tech Logo" onload="showStatus('success')" onerror="showStatus('error')">
+        <div id="status" class="status" style="display: none;">
+            <span id="status-text"></span>
+        </div>
+    </div>
+    
+    <div class="logo-test">
+        <h2>Informações do Arquivo:</h2>
+        <p>Arquivo: /onsmarttech.png</p>
+        <p>Tamanho: 13.6 KB</p>
+        <p>Formato: PNG</p>
+    </div>
+
+    <script>
+        function showStatus(type) {
+            const statusDiv = document.getElementById('status');
+            const statusText = document.getElementById('status-text');
+            
+            if (type === 'success') {
+                statusDiv.className = 'status success';
+                statusText.textContent = '✅ Logo carregada com sucesso!';
+            } else {
+                statusDiv.className = 'status error';
+                statusText.textContent = '❌ Erro ao carregar a logo!';
+            }
+            
+            statusDiv.style.display = 'block';
+        }
+        
+        // Timeout para detectar se a imagem não carregou
+        setTimeout(() => {
+            const img = document.querySelector('img');
+            if (!img.complete || img.naturalHeight === 0) {
+                showStatus('error');
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
