@@ -116,6 +116,11 @@ export default function LandingPage() {
               width={120}
               height={120}
               className="object-contain hover:scale-105 transition-transform duration-300"
+              priority
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.src = "/placeholder-logo.png";
+              }}
             />
           </div>
           <nav className="hidden md:flex gap-8">
@@ -649,12 +654,13 @@ export default function LandingPage() {
         </section>
 
         {/* AÇÃO - CTA Final */}
-        <section className="w-full py-20 md:py-32 bg-primary text-primary-foreground relative overflow-hidden">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-          <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+        <section className="w-full py-20 md:py-32 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background"></div>
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/15 to-transparent rounded-full blur-3xl"></div>
 
-          <div className="container px-4 md:px-6 relative">
+          <div className="container px-4 md:px-6 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -662,41 +668,76 @@ export default function LandingPage() {
               transition={{ duration: 0.5 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="mb-8"
+              >
+                <Badge
+                  className="mb-6 rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20"
+                  variant="outline"
+                >
+                  Oferta Especial 2025
+                </Badge>
+              </motion.div>
+              
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-foreground">
                 Pronto para Revolucionar Seu Negócio?
               </h2>
-              <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed">
+              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                 <strong>Últimas vagas disponíveis para 2025!</strong> Entre em contato agora e garante sua 
                 consultoria gratuita de 30 minutos. Transforme sua empresa em apenas 90 dias.
               </p>
               
-              <div className="bg-white/10 rounded-2xl p-8 mb-8">
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-                  <div className="flex items-center gap-2">
-                    <Clock className="size-5" />
+              <motion.div 
+                className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
+                  <motion.div 
+                    className="flex items-center gap-2 text-sm font-medium"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Clock className="size-4 text-primary" />
+                    </div>
                     <span>Consultoria Gratuita</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="size-5" />
+                  </motion.div>
+                  <motion.div 
+                    className="flex items-center gap-2 text-sm font-medium"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center">
+                      <CheckCircle className="size-4 text-primary" />
+                    </div>
                     <span>Sem Compromisso</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="size-5" />
+                  </motion.div>
+                  <motion.div 
+                    className="flex items-center gap-2 text-sm font-medium"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Users className="size-4 text-primary" />
+                    </div>
                     <span>Especialista Dedicado</span>
-                  </div>
+                  </motion.div>
                 </div>
                 
                 <motion.div 
                   className="flex flex-col sm:flex-row gap-4 justify-center"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Button size="lg" variant="secondary" className="rounded-full h-14 px-8 text-base">
+                    <Button size="lg" className="rounded-full h-14 px-8 text-base bg-primary hover:bg-primary/90">
                       Quero Minha Consultoria Gratuita
                       <motion.div
                         animate={{ x: [0, 4, 0] }}
@@ -713,17 +754,24 @@ export default function LandingPage() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="rounded-full h-14 px-8 text-base bg-transparent border-white text-white hover:bg-white/10"
+                      className="rounded-full h-14 px-8 text-base border-primary text-primary hover:bg-primary/10"
                     >
                       Falar no WhatsApp
                     </Button>
                   </motion.div>
                 </motion.div>
-              </div>
+              </motion.div>
               
-              <p className="text-sm text-primary-foreground/70">
-                Oferta válida apenas para os próximos 30 dias. Vagas limitadas!
-              </p>
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="flex items-center justify-center gap-2 text-sm text-muted-foreground"
+              >
+                <Clock className="size-4" />
+                <span>Oferta válida apenas para os próximos 30 dias. Vagas limitadas!</span>
+              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -740,6 +788,11 @@ export default function LandingPage() {
                   width={120}
                   height={120}
                   className="object-contain hover:scale-105 transition-transform duration-300"
+                  priority
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/placeholder-logo.png";
+                  }}
                 />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
