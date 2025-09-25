@@ -20,7 +20,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/onsmarttech.png',
+        source: '/public/onsmart.png',
         headers: [
           {
             key: 'Cache-Control',
@@ -28,7 +28,7 @@ const nextConfig = {
           },
           {
             key: 'ETag',
-            value: '"onsmarttech-logo-v1"',
+            value: '"onsmart-logo-v1"',
           },
         ],
       },
