@@ -2,7 +2,7 @@
   "framework": "nextjs",
   "headers": [
     {
-      "source": "/public/onsmart.png",
+      "source": "/onsmarttech.png",
       "headers": [
         {
           "key": "Cache-Control",
@@ -10,7 +10,7 @@
         },
         {
           "key": "ETag",
-          "value": "\"onsmart-logo-v1\""
+          "value": "\"onsmarttech-logo-v1\""
         }
       ]
     },
@@ -41,8 +41,8 @@
   ],
   "rewrites": [
     {
-      "source": "/public/onsmart.png",
-      "destination": "/public/onsmart.png"
+      "source": "/onsmarttech.png",
+      "destination": "/onsmarttech.png"
     }
   ]
 }

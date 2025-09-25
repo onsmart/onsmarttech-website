@@ -59,7 +59,7 @@
     <div class="test-container">
         <h2>Teste 1: Logo Direta</h2>
         <div class="logo-test">
-            <img src="/public/onsmart.png" alt="Logo Test 1" onload="showStatus('test1', 'success')" onerror="showStatus('test1', 'error')">
+            <img src="/onsmarttech.png" alt="Logo Test 1" onload="showStatus('test1', 'success')" onerror="showStatus('test1', 'error')">
             <div id="test1" class="status" style="display: none;"></div>
         </div>
     </div>
@@ -75,7 +75,7 @@
     <div class="test-container">
         <h2>Teste 3: Logo com Query Parameter</h2>
         <div class="logo-test">
-            <img src="/public/onsmart.png?v=1" alt="Logo Test 3" onload="showStatus('test3', 'success')" onerror="showStatus('test3', 'error')">
+            <img src="/onsmarttech.png?v=1" alt="Logo Test 3" onload="showStatus('test3', 'success')" onerror="showStatus('test3', 'error')">
             <div id="test3" class="status" style="display: none;"></div>
         </div>
     </div>
@@ -83,9 +83,9 @@
     <div class="test-container">
         <h2>URLs de Teste:</h2>
         <div class="url-test">
-            <p>URL Principal: <a href="/public/onsmart.png" target="_blank" style="color: #20B2AA;">/public/onsmart.png</a></p>
-            <p>Com Timestamp: <a href="#" id="timestamped-url" target="_blank" style="color: #20B2AA;">/public/onsmart.png?t=</a></p>
-            <p>Com Versão: <a href="/public/onsmart.png?v=1" target="_blank" style="color: #20B2AA;">/public/onsmart.png?v=1</a></p>
+            <p>URL Principal: <a href="/onsmarttech.png" target="_blank" style="color: #20B2AA;">/onsmarttech.png</a></p>
+            <p>Com Timestamp: <a href="#" id="timestamped-url" target="_blank" style="color: #20B2AA;">/onsmarttech.png?t=</a></p>
+            <p>Com Versão: <a href="/onsmarttech.png?v=1" target="_blank" style="color: #20B2AA;">/onsmarttech.png?v=1</a></p>
         </div>
     </div>
 
@@ -96,9 +96,9 @@
         
         // Teste 2: Logo com timestamp
         const timestamp = Date.now();
-        document.getElementById('logo2').src = `/public/onsmart.png?t=${timestamp}`;
-        document.getElementById('timestamped-url').href = `/public/onsmart.png?t=${timestamp}`;
-        document.getElementById('timestamped-url').textContent = `/public/onsmart.png?t=${timestamp}`;
+        document.getElementById('logo2').src = `/onsmarttech.png?t=${timestamp}`;
+        document.getElementById('timestamped-url').href = `/onsmarttech.png?t=${timestamp}`;
+        document.getElementById('timestamped-url').textContent = `/onsmarttech.png?t=${timestamp}`;
         
         function showStatus(testId, type) {
             const statusDiv = document.getElementById(testId);
