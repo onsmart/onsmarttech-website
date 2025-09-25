@@ -111,50 +111,14 @@ export default function LandingPage() {
       >
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-xl">
-            <div className="flex items-center gap-2 font-bold text-xl hover:scale-105 transition-transform duration-300">
-              <svg
-                width="120"
-                height="40"
-                viewBox="0 0 200 60"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="object-contain"
-              >
-                {/* onsmart */}
-                <text
-                  x="10"
-                  y="25"
-                  fontSize="20"
-                  fontWeight="bold"
-                  fill="white"
-                  fontFamily="Arial, sans-serif"
-                >
-                  on
-                </text>
-                <text
-                  x="50"
-                  y="25"
-                  fontSize="20"
-                  fontWeight="bold"
-                  fill="#20B2AA"
-                  fontFamily="Arial, sans-serif"
-                >
-                  smart
-                </text>
-                
-                {/* TECH */}
-                <text
-                  x="10"
-                  y="45"
-                  fontSize="16"
-                  fontWeight="bold"
-                  fill="white"
-                  fontFamily="Arial, sans-serif"
-                >
-                  TECH
-                </text>
-              </svg>
-            </div>
+            <img
+              src="/logo.png"
+              alt="OnSmart Tech Logo"
+              width={120}
+              height={40}
+              className="object-contain hover:scale-105 transition-transform duration-300"
+              style={{ maxWidth: '120px', height: 'auto' }}
+            />
           </div>
           <nav className="hidden md:flex gap-8">
             <button
@@ -815,50 +779,14 @@ export default function LandingPage() {
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-bold text-xl">
-                <div className="flex items-center gap-2 font-bold text-xl hover:scale-105 transition-transform duration-300">
-                  <svg
-                    width="120"
-                    height="40"
-                    viewBox="0 0 200 60"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="object-contain"
-                  >
-                    {/* onsmart */}
-                    <text
-                      x="10"
-                      y="25"
-                      fontSize="20"
-                      fontWeight="bold"
-                      fill="white"
-                      fontFamily="Arial, sans-serif"
-                    >
-                      on
-                    </text>
-                    <text
-                      x="50"
-                      y="25"
-                      fontSize="20"
-                      fontWeight="bold"
-                      fill="#20B2AA"
-                      fontFamily="Arial, sans-serif"
-                    >
-                      smart
-                    </text>
-                    
-                    {/* TECH */}
-                    <text
-                      x="10"
-                      y="45"
-                      fontSize="16"
-                      fontWeight="bold"
-                      fill="white"
-                      fontFamily="Arial, sans-serif"
-                    >
-                      TECH
-                    </text>
-                  </svg>
-                </div>
+                <img
+                  src="/logo.png"
+                  alt="OnSmart Tech Logo"
+                  width={120}
+                  height={40}
+                  className="object-contain hover:scale-105 transition-transform duration-300"
+                  style={{ maxWidth: '120px', height: 'auto' }}
+                />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Transformando negócios através da tecnologia. Soluções digitais inovadoras para acelerar seu

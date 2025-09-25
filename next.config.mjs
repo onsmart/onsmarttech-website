@@ -20,15 +20,15 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: '/onsmarttech.png',
+        source: '/logo.png',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
+            value: 'public, max-age=31536000, immutable',
           },
           {
             key: 'ETag',
-            value: '"onsmarttech-logo-v1"',
+            value: '"onsmarttech-logo-v2"',
           },
         ],
       },
