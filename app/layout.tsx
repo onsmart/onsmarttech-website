@@ -7,9 +7,27 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SaaSify - Streamline Your Workflow",
-  description: "Boost productivity, reduce costs, and scale your business with our all-in-one SaaS platform.",
-    generator: 'v0.app'
+  title: "OnSmart Tech Solutions - Transformação Digital",
+  description: "Transforme seu negócio com soluções digitais inovadoras. Desenvolvimento web, apps mobile, consultoria digital e muito mais.",
+  generator: 'Next.js',
+  keywords: "desenvolvimento web, aplicativos mobile, consultoria digital, transformação digital, tecnologia, software personalizado",
+  authors: [{ name: "OnSmart Tech Solutions" }],
+  creator: "OnSmart Tech Solutions",
+  publisher: "OnSmart Tech Solutions",
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://onsmarttech.vercel.app",
+    title: "OnSmart Tech Solutions - Transformação Digital",
+    description: "Transforme seu negócio com soluções digitais inovadoras. Desenvolvimento web, apps mobile, consultoria digital e muito mais.",
+    siteName: "OnSmart Tech Solutions",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "OnSmart Tech Solutions - Transformação Digital",
+    description: "Transforme seu negócio com soluções digitais inovadoras. Desenvolvimento web, apps mobile, consultoria digital e muito mais.",
+  },
 }
 
 export default function RootLayout({
