@@ -111,15 +111,13 @@ export default function LandingPage() {
       >
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-xl">
-            <Image
+            <img
               src="/onsmarttech.png"
               alt="OnSmart Tech Logo"
               width={120}
               height={120}
               className="object-contain hover:scale-105 transition-transform duration-300"
-              priority
-              quality={100}
-              unoptimized={true}
+              style={{ maxWidth: '120px', height: 'auto' }}
             />
           </div>
           <nav className="hidden md:flex gap-8">
@@ -781,15 +779,13 @@ export default function LandingPage() {
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center gap-2 font-bold text-xl">
-                <Image
+                <img
                   src="/onsmarttech.png"
                   alt="OnSmart Tech Logo"
                   width={120}
                   height={120}
                   className="object-contain hover:scale-105 transition-transform duration-300"
-                  priority
-                  quality={100}
-                  unoptimized={true}
+                  style={{ maxWidth: '120px', height: 'auto' }}
                 />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
