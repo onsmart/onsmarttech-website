@@ -2,6 +2,19 @@
   "framework": "nextjs",
   "headers": [
     {
+      "source": "/onsmarttech.png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        },
+        {
+          "key": "ETag",
+          "value": "\"onsmarttech-logo-v1\""
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
@@ -24,6 +37,12 @@
       "source": "/home",
       "destination": "/",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/onsmarttech.png",
+      "destination": "/onsmarttech.png"
     }
   ]
 }
