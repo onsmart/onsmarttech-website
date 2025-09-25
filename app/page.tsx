@@ -71,6 +71,7 @@ function TypewriterText({ texts, speed = 100, deleteSpeed = 50, pauseTime = 2000
   )
 }
 
+
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -117,10 +118,8 @@ export default function LandingPage() {
               height={120}
               className="object-contain hover:scale-105 transition-transform duration-300"
               priority
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = "/placeholder-logo.png";
-              }}
+              quality={100}
+              unoptimized={true}
             />
           </div>
           <nav className="hidden md:flex gap-8">
@@ -789,10 +788,8 @@ export default function LandingPage() {
                   height={120}
                   className="object-contain hover:scale-105 transition-transform duration-300"
                   priority
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = "/placeholder-logo.png";
-                  }}
+                  quality={100}
+                  unoptimized={true}
                 />
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
