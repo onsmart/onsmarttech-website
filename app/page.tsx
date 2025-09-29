@@ -6,6 +6,7 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   ChevronRight,
+  ChevronDown,
   Menu,
   X,
   ArrowRight,
@@ -25,10 +26,12 @@ import {
   Star,
   TrendingUp,
   Clock,
+  Settings,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+import Header from "@/components/header"
 
 // Componente de texto digitando
 function TypewriterText({ texts, speed = 100, deleteSpeed = 50, pauseTime = 2000 }) {
@@ -74,7 +77,6 @@ function TypewriterText({ texts, speed = 100, deleteSpeed = 50, pauseTime = 2000
 
 export default function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,147 +108,11 @@ export default function LandingPage() {
 
   return (
     <div className="flex min-h-[100dvh] flex-col bg-background">
-      <header
-        className={`sticky top-0 z-50 w-full backdrop-blur-lg transition-all duration-300 ${isScrolled ? "bg-background/95 shadow-sm border-b" : "bg-background/80"}`}
-      >
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-xl">
-            <img
-              src="/logo.png"
-              alt="OnSmart Tech Logo"
-              width={120}
-              height={40}
-              className="object-contain hover:scale-105 transition-transform duration-300"
-              style={{ maxWidth: '120px', height: 'auto' }}
-            />
-          </div>
-          <nav className="hidden md:flex gap-8">
-            <button
-              onClick={() => {
-                const element = document.getElementById('solucoes');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              SOLUÇÕES
-            </button>
-            <button
-              onClick={() => {
-                const element = document.getElementById('servicos');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              SERVIÇOS
-            </button>
-            <button
-              onClick={() => {
-                const element = document.getElementById('software');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              SOFTWARE
-            </button>
-            <button
-              onClick={() => {
-                const element = document.getElementById('contato');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              CONTATO
-            </button>
-          </nav>
-          <div className="hidden md:flex gap-4 items-center">
-            <Button 
-              className="rounded-full bg-primary hover:bg-primary/90"
-              onClick={() => {
-                const element = document.getElementById('contato');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Começar Agora
-              <ChevronRight className="ml-1 size-4" />
-            </Button>
-          </div>
-          <div className="flex items-center gap-4 md:hidden">
-            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </div>
-        </div>
-        {/* Mobile menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-16 inset-x-0 bg-background/95 backdrop-blur-lg border-b"
-          >
-            <div className="container py-4 flex flex-col gap-4">
-              <button 
-                className="py-2 text-sm font-medium text-left" 
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  const element = document.getElementById('solucoes');
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                SOLUÇÕES
-              </button>
-              <button 
-                className="py-2 text-sm font-medium text-left" 
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  const element = document.getElementById('servicos');
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                SERVIÇOS
-              </button>
-              <button 
-                className="py-2 text-sm font-medium text-left" 
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  const element = document.getElementById('software');
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                SOFTWARE
-              </button>
-              <button 
-                className="py-2 text-sm font-medium text-left" 
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  const element = document.getElementById('contato');
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                CONTATO
-              </button>
-              <div className="flex flex-col gap-2 pt-2 border-t">
-                <Button 
-                  className="rounded-full bg-primary hover:bg-primary/90"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    const element = document.getElementById('contato');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                >
-                  Começar Agora
-                  <ChevronRight className="ml-1 size-4" />
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </header>
+      <Header isScrolled={isScrolled} />
 
       <main className="flex-1">
         {/* ATENÇÃO - Hero Section */}
-        <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden relative">
+        <section className="w-full py-12 md:py-16 lg:py-20 overflow-hidden relative">
           <div className="absolute inset-0 bg-background"></div>
           <div className="absolute inset-0 bg-[url('/modern-city-skyline-silhouette.jpg')] bg-cover bg-center opacity-10"></div>
 
@@ -351,275 +217,199 @@ export default function LandingPage() {
               </div>
             </motion.div>
 
-            <motion.div
-              variants={container}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-            >
-              {[
-                {
-                  title: "Desenvolvimento Web",
-                  description: "Sites e aplicações web modernas, responsivas e otimizadas para performance.",
-                  icon: <Globe className="size-6" />,
-                  benefit: "Aumente conversões em 60%",
-                },
-                {
-                  title: "Aplicativos Mobile",
-                  description: "Apps nativos e híbridos para iOS e Android com experiência excepcional.",
-                  icon: <Zap className="size-6" />,
-                  benefit: "Engajamento 3x maior",
-                },
-                {
-                  title: "Consultoria Digital",
-                  description: "Estratégias personalizadas para acelerar sua transformação digital.",
-                  icon: <Users className="size-6" />,
-                  benefit: "ROI em 6 meses",
-                },
-                {
-                  title: "Cloud Computing",
-                  description: "Migração e otimização de infraestrutura em nuvem para máxima eficiência.",
-                  icon: <Layers className="size-6" />,
-                  benefit: "Reduza custos em 50%",
-                },
-                {
-                  title: "Analytics & BI",
-                  description: "Inteligência de negócios e análise de dados para decisões estratégicas.",
-                  icon: <BarChart className="size-6" />,
-                  benefit: "Decisões 5x mais precisas",
-                },
-                {
-                  title: "Segurança Digital",
-                  description: "Proteção completa de dados e sistemas com as melhores práticas de segurança.",
-                  icon: <Shield className="size-6" />,
-                  benefit: "100% de proteção",
-                },
-              ].map((service, i) => (
-                <motion.div 
-                  key={i} 
-                  variants={item}
-                  whileHover={{ 
-                    y: -8,
-                    transition: { duration: 0.2 }
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Card className="h-full group hover:shadow-xl transition-all duration-300 border-border/40 bg-background hover:border-primary/20">
-                    <CardContent className="p-8">
-                      <motion.div 
-                        className="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-                        whileHover={{ 
-                          rotate: [0, -10, 10, 0],
-                          transition: { duration: 0.5 }
-                        }}
-                      >
-                        {service.icon}
-                      </motion.div>
-                      <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">{service.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed mb-4">{service.description}</p>
-                      <motion.div 
-                        className="flex items-center gap-2 text-sm font-medium text-primary"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: i * 0.1 }}
-                      >
-                        <motion.div
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
-                        >
-                          <CheckCircle className="size-4" />
-                        </motion.div>
-                        <span>{service.benefit}</span>
-                      </motion.div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
         </section>
 
-        {/* INTERESSE - Quem Somos com Benefícios */}
-        <section id="servicos" className="w-full py-20 md:py-32 bg-muted/30">
-          <div className="container px-4 md:px-6">
+        {/* SOLUÇÕES TECNOLÓGICAS EMPRESARIAIS & SEGMENTOS */}
+        <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.6, 0.3],
+                x: [0, 50, 0],
+                y: [0, -30, 0]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div
+              className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/3 rounded-full blur-3xl"
+              animate={{
+                scale: [1.2, 1, 1.2],
+                opacity: [0.2, 0.4, 0.2],
+                x: [0, -40, 0],
+                y: [0, 20, 0]
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2
+              }}
+            />
+          </div>
+
+          <div className="container px-4 md:px-6 relative z-10">
+            {/* Header Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="max-w-4xl mx-auto text-center mb-16"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-center mb-20"
             >
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                Por Que Escolher a OnSmart Tech?
-              </h2>
-              <div className="w-16 h-1 bg-primary mx-auto mb-8"></div>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Desde 2014, somos especialistas em transformação digital. Nossa missão é acelerar o crescimento 
-                do seu negócio através de soluções tecnológicas que geram resultados reais e mensuráveis.
-              </p>
-              
-              {/* Estatísticas de Impacto */}
-              <motion.div 
-                className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12"
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-8"
+              >
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/10 text-primary border border-primary/20 text-sm font-medium mb-8">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  >
+                    <Target className="size-4" />
+                  </motion.div>
+                  Soluções Especializadas
+                </div>
+              </motion.div>
+
+              <motion.h2 
+                className="text-4xl md:text-5xl font-bold tracking-tight mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
-                {[
-                  { number: "500+", label: "Empresas Atendidas" },
-                  { number: "10+", label: "Anos de Experiência" },
-                  { number: "98%", label: "Satisfação dos Clientes" },
-                  { number: "24h", label: "Suporte Técnico" }
-                ].map((stat, i) => (
-                  <motion.div 
-                    key={i}
-                    className="text-center"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <motion.div 
-                      className="text-3xl md:text-4xl font-bold text-primary mb-2"
-                      animate={{ 
-                        scale: [1, 1.1, 1],
-                        color: ["#3b82f6", "#8b5cf6", "#3b82f6"]
-                      }}
-                      transition={{ 
-                        duration: 3, 
-                        repeat: Infinity, 
-                        delay: i * 0.5 
-                      }}
-                    >
-                      {stat.number}
-                    </motion.div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
+                Soluções Tecnológicas <span className="text-primary">Empresariais</span>
+              </motion.h2>
+              
+              <motion.div 
+                className="w-24 h-1 bg-primary mx-auto mb-8"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              />
+              
+              <motion.p 
+                className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                Soluções tecnológicas de TI / Telecom / Automação que otimizam os negócios, ampliam a vantagem competitiva e propiciam o crescimento empresarial sustentável.
+              </motion.p>
+
+              <motion.p 
+                className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              >
+                Alcance todo o potencial do seu negócio! Tecnologia específica para as necessidades do seu segmento.
+              </motion.p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: <Target className="size-8 text-primary" />,
-                  title: "Nossa Missão",
-                  description:
-                    "Ser um agente transformador através de soluções digitais inovadoras que superam expectativas.",
-                },
-                {
-                  icon: <Rocket className="size-8 text-primary" />,
-                  title: "Nossa Visão",
-                  description:
-                    "Liderar a transformação digital no Brasil, criando impacto positivo na sociedade e nos negócios.",
-                },
-                {
-                  icon: <Shield className="size-8 text-primary" />,
-                  title: "Nossos Valores",
-                  description:
-                    "Inovação, qualidade, transparência e compromisso com resultados excepcionais para nossos clientes.",
-                },
-              ].map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  whileHover={{ 
-                    y: -10,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <Card className="h-full text-center p-8 border-border/40 bg-background hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-                    <CardContent className="p-0">
-                      <motion.div 
-                        className="mb-6"
-                        whileHover={{ 
-                          rotate: [0, -15, 15, 0],
-                          scale: 1.1,
-                          transition: { duration: 0.6 }
-                        }}
-                      >
-                        {item.icon}
-                      </motion.div>
-                      <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">{item.title}</h3>
-                      <p className="text-muted-foreground">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* DESEJO - Soluções com Foco em Benefícios */}
-        <section id="solucoes" className="w-full py-20 md:py-32">
-          <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                Soluções que Transformam Seu Negócio
-              </h2>
-              <div className="w-16 h-1 bg-primary mx-auto mb-8"></div>
-              <p className="max-w-3xl mx-auto text-lg text-muted-foreground">
-                Descubra como nossas soluções podem revolucionar sua empresa e gerar resultados extraordinários
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={container}
+            {/* Cards Grid Sem Espaçamento */}
+            <motion.div 
+              className="grid md:grid-cols-3"
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1,
+                    delayChildren: 1.2
+                  }
+                }
+              }}
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true }}
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              viewport={{ once: true, margin: "-100px" }}
             >
               {[
-                {
-                  title: "Desenvolvimento Web",
-                  description: "Sites e aplicações web modernas, responsivas e otimizadas para performance.",
-                  icon: <Globe className="size-6" />,
+                { 
+                  title: "Segmentos", 
+                  description: "Soluções tecnológicas por segmento de negócio para otimizar processos e desempenho.",
+                  href: "/segmentos",
+                  icon: <Target className="size-6" />
                 },
-                {
-                  title: "Aplicativos Mobile",
-                  description: "Apps nativos e híbridos para iOS e Android com experiência excepcional.",
-                  icon: <Zap className="size-6" />,
+                { 
+                  title: "Tecnologias", 
+                  description: "Tecnologia de ponta que otimiza a produtividade, mobilidade e gestão eficiente para seu negócio.",
+                  href: "/tecnologias",
+                  icon: <Code className="size-6" />
                 },
-                {
-                  title: "Consultoria Digital",
-                  description: "Estratégias personalizadas para acelerar sua transformação digital.",
-                  icon: <Users className="size-6" />,
+                { 
+                  title: "Locação", 
+                  description: "Otimize recursos com a locação de equipamentos tecnológicos para operação da empresa.",
+                  href: "/locacao",
+                  icon: <Settings className="size-6" />
                 },
-                {
-                  title: "Cloud Computing",
-                  description: "Migração e otimização de infraestrutura em nuvem para máxima eficiência.",
-                  icon: <Layers className="size-6" />,
-                },
-                {
-                  title: "Analytics & BI",
-                  description: "Inteligência de negócios e análise de dados para decisões estratégicas.",
-                  icon: <BarChart className="size-6" />,
-                },
-                {
-                  title: "Segurança Digital",
-                  description: "Proteção completa de dados e sistemas com as melhores práticas de segurança.",
-                  icon: <Shield className="size-6" />,
-                },
-              ].map((service, i) => (
-                <motion.div key={i} variants={item}>
-                  <Card className="h-full group hover:shadow-lg transition-all duration-300 border-border/40 bg-background">
-                    <CardContent className="p-8">
-                      <div className="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                        {service.icon}
+              ].map((segment, i) => (
+                <motion.div
+                  key={i}
+                  variants={{
+                    hidden: { 
+                      opacity: 0, 
+                      y: 20
+                    },
+                    show: { 
+                      opacity: 1, 
+                      y: 0,
+                      transition: {
+                        duration: 0.5,
+                        ease: "easeOut"
+                      }
+                    }
+                  }}
+                  whileHover={{ 
+                    y: -4,
+                    transition: { 
+                      duration: 0.2,
+                      ease: "easeOut"
+                    }
+                  }}
+                >
+                  <Card className="h-full group hover:shadow-xl transition-all duration-300 border-r border-gray-200 bg-gray-50 hover:bg-white hover:border-primary/30 relative overflow-hidden cursor-pointer">
+                    <CardContent className="p-10">
+                      {/* Icon Container Melhorado */}
+                      <div className="size-20 rounded-2xl bg-white shadow-sm border border-gray-100 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-md transition-all duration-300">
+                        {segment.icon}
                       </div>
-                      <h3 className="text-xl font-bold mb-4">{service.title}</h3>
-                      <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                      
+                      {/* Title */}
+                      <h3 className="text-2xl font-bold mb-6 group-hover:text-primary transition-colors duration-300">
+                        {segment.title}
+                      </h3>
+                      
+                      {/* Description */}
+                      <p className="text-gray-600 leading-relaxed mb-8 text-base">
+                        {segment.description}
+                      </p>
+                      
+                      {/* Button Melhorado */}
+                      <Button 
+                        asChild
+                        size="lg"
+                        className="w-full bg-primary hover:bg-primary/90 transition-all duration-300 rounded-xl h-12 text-base font-medium shadow-sm hover:shadow-md"
+                      >
+                        <Link href={segment.href} className="flex items-center justify-center gap-2">
+                          Saiba Mais
+                          <ArrowRight className="size-4" />
+                        </Link>
+                      </Button>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -628,34 +418,13 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* SOFTWARE - Seção de Software */}
-        <section id="software" className="w-full py-20 md:py-32 bg-muted/20">
-          <div className="container px-4 md:px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
-                Software Personalizado
-              </h2>
-              <div className="w-16 h-1 bg-primary mx-auto mb-8"></div>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                Desenvolvemos software sob medida para atender às necessidades específicas do seu negócio, 
-                garantindo máxima eficiência e resultados excepcionais.
-              </p>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* AÇÃO - CTA Final */}
-        <section className="w-full py-20 md:py-32 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background"></div>
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/15 to-transparent rounded-full blur-3xl"></div>
+        {/* PARCEIROS */}
+        <section className="w-full py-20 md:py-32 bg-white relative overflow-hidden">
+          {/* Background Elements */}
+          <div className="absolute inset-0">
+            <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+          </div>
 
           <div className="container px-4 md:px-6 relative z-10">
             <motion.div
@@ -663,118 +432,209 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-center max-w-4xl mx-auto"
+              className="text-center mb-16"
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="mb-8"
-              >
-                <Badge
-                  className="mb-6 rounded-full px-6 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20"
-                  variant="outline"
-                >
-                  Oferta Especial 2025
-                </Badge>
-              </motion.div>
-              
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-foreground">
-                Pronto para Revolucionar Seu Negócio?
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+                Nossos <span className="text-primary">Parceiros</span>
               </h2>
-              <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                <strong>Últimas vagas disponíveis para 2025!</strong> Entre em contato agora e garante sua 
-                consultoria gratuita de 30 minutos. Transforme sua empresa em apenas 90 dias.
+              <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
+              <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                Trabalhamos com as melhores marcas de tecnologia para oferecer soluções de qualidade e inovação.
+              </p>
+            </motion.div>
+
+            {/* Carrossel Horizontal Ampliado */}
+            <div className="relative">
+              {/* Gradientes laterais para fade effect */}
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
+              
+              <div className="overflow-hidden">
+                <div className="flex animate-scroll">
+                  {/* Primeira linha de logos */}
+                  <div className="flex items-center gap-12 flex-shrink-0">
+                    {[
+                      { name: "Microsoft", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "Western Digital", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "VMware", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "HP", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "Veritas", logo: "/placeholder-logo.svg", size: "h-15" },
+                      { name: "Veeam", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "Dell", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "Cisco", logo: "/placeholder-logo.svg", size: "h-15" },
+                      { name: "IBM", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "Oracle", logo: "/placeholder-logo.svg", size: "h-15" },
+                      { name: "Amazon Web Services", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "Google Cloud", logo: "/placeholder-logo.svg", size: "h-15" },
+                      { name: "Salesforce", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "Adobe", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "Intel", logo: "/placeholder-logo.svg", size: "h-15" },
+                    ].map((partner, i) => (
+                      <motion.div
+                        key={i}
+                        className="flex items-center justify-center p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 min-w-[160px] border border-gray-100"
+                        whileHover={{ 
+                          y: -4,
+                          scale: 1.02,
+                          transition: { duration: 0.2 }
+                        }}
+                      >
+                        <img
+                          src={partner.logo}
+                          alt={`${partner.name} logo`}
+                          className={`${partner.size} w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500`}
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Segunda linha de logos (duplicada para continuidade) */}
+                  <div className="flex items-center gap-12 flex-shrink-0">
+                    {[
+                      { name: "Microsoft", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "Western Digital", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "VMware", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "HP", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "Veritas", logo: "/placeholder-logo.svg", size: "h-15" },
+                      { name: "Veeam", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "Dell", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "Cisco", logo: "/placeholder-logo.svg", size: "h-15" },
+                      { name: "IBM", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "Oracle", logo: "/placeholder-logo.svg", size: "h-15" },
+                      { name: "Amazon Web Services", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "Google Cloud", logo: "/placeholder-logo.svg", size: "h-15" },
+                      { name: "Salesforce", logo: "/placeholder-logo.svg", size: "h-14" },
+                      { name: "Adobe", logo: "/placeholder-logo.svg", size: "h-16" },
+                      { name: "Intel", logo: "/placeholder-logo.svg", size: "h-15" },
+                    ].map((partner, i) => (
+                      <motion.div
+                        key={`duplicate-${i}`}
+                        className="flex items-center justify-center p-6 bg-gray-50 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 min-w-[160px] border border-gray-100"
+                        whileHover={{ 
+                          y: -4,
+                          scale: 1.02,
+                          transition: { duration: 0.2 }
+                        }}
+                      >
+                        <img
+                          src={partner.logo}
+                          alt={`${partner.name} logo`}
+                          className={`${partner.size} w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500`}
+                        />
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Texto adicional */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-center mt-16"
+            >
+              <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+                Mais de <span className="font-bold text-primary">50 parceiros</span> de tecnologia trabalhando conosco para entregar as melhores soluções do mercado.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* INTERESSE - Quem Somos com Benefícios */}
+        <section id="servicos" className="w-full py-20 md:py-32 bg-gray-50">
+          <div className="container px-4 md:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+                Por Que Escolher a <span className="text-primary">OnSmart Tech?</span>
+              </h2>
+              <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
+              <p className="text-xl text-gray-600 leading-relaxed mb-16">
+                Desde 2014, somos especialistas em transformação digital. Nossa missão é acelerar o crescimento 
+                do seu negócio através de soluções tecnológicas que geram resultados reais e mensuráveis.
               </p>
               
-              <motion.div 
-                className="bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-8 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8">
+              {/* Estatísticas Melhoradas */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {[
+                  { number: "500+", label: "Empresas Atendidas" },
+                  { number: "10+", label: "Anos de Experiência" },
+                  { number: "98%", label: "Satisfação dos Clientes" },
+                  { number: "24h", label: "Suporte Técnico" }
+                ].map((stat, i) => (
                   <motion.div 
-                    className="flex items-center gap-2 text-sm font-medium"
-                    whileHover={{ scale: 1.05 }}
+                    key={i} 
+                    className="text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.2 }}
                   >
-                    <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Clock className="size-4 text-primary" />
+                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+                      {stat.number}
                     </div>
-                    <span>Consultoria Gratuita</span>
+                    <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
                   </motion.div>
-                  <motion.div 
-                    className="flex items-center gap-2 text-sm font-medium"
-                    whileHover={{ scale: 1.05 }}
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+
+
+        {/* AÇÃO - CTA Final */}
+        <section className="w-full py-20 md:py-32 bg-gray-50">
+          <div className="container px-4 md:px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="max-w-4xl mx-auto text-center"
+            >
+              <div className="bg-white rounded-3xl p-12 shadow-lg">
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-8">
+                  Pronto para <span className="text-primary">Revolucionar</span> Seu Negócio?
+                </h2>
+                <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
+                <p className="text-xl text-gray-600 leading-relaxed mb-12">
+                  <strong>Últimas vagas disponíveis para 2025!</strong> Entre em contato agora e garante sua 
+                  consultoria gratuita de 30 minutos. Transforme sua empresa em apenas 90 dias.
+                </p>
+                
+                {/* Botões CTA Melhorados */}
+                <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8">
+                  <Button size="lg" className="rounded-xl h-16 px-10 text-lg bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all duration-300">
+                    Quero Minha Consultoria Gratuita
+                    <ArrowRight className="ml-2 size-5" />
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="rounded-xl h-16 px-10 text-lg border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
                   >
-                    <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center">
-                      <CheckCircle className="size-4 text-primary" />
-                    </div>
-                    <span>Sem Compromisso</span>
-                  </motion.div>
-                  <motion.div 
-                    className="flex items-center gap-2 text-sm font-medium"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <div className="size-8 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Users className="size-4 text-primary" />
-                    </div>
-                    <span>Especialista Dedicado</span>
-                  </motion.div>
+                    Falar no WhatsApp
+                  </Button>
                 </div>
                 
-                <motion.div 
-                  className="flex flex-col sm:flex-row gap-4 justify-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button size="lg" className="rounded-full h-14 px-8 text-base bg-primary hover:bg-primary/90">
-                      Quero Minha Consultoria Gratuita
-                      <motion.div
-                        animate={{ x: [0, 4, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                      >
-                        <ArrowRight className="ml-2 size-4" />
-                      </motion.div>
-                    </Button>
-                  </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="rounded-full h-14 px-8 text-base border-primary text-primary hover:bg-primary/10"
-                    >
-                      Falar no WhatsApp
-                    </Button>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="flex items-center justify-center gap-2 text-sm text-muted-foreground"
-              >
-                <Clock className="size-4" />
-                <span>Oferta válida apenas para os próximos 30 dias. Vagas limitadas!</span>
-              </motion.div>
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-500 bg-gray-50 rounded-full px-6 py-3 inline-flex">
+                  <Clock className="size-4" />
+                  <span>Oferta válida apenas para os próximos 30 dias. Vagas limitadas!</span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </section>
       </main>
 
-      <footer id="contato" className="w-full border-t bg-background/95 backdrop-blur-sm">
+      <footer id="contato" className="w-full border-t backdrop-blur-sm" style={{ backgroundColor: 'hsl(var(--footer-bg))' }}>
         <div className="container flex flex-col gap-8 px-4 py-16 md:px-6">
           <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
             <div className="space-y-4">
@@ -788,83 +648,83 @@ export default function LandingPage() {
                   style={{ maxWidth: '120px', height: 'auto' }}
                 />
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-white/80 leading-relaxed">
                 Transformando negócios através da tecnologia. Soluções digitais inovadoras para acelerar seu
                 crescimento.
               </p>
             </div>
             <div className="space-y-4">
-              <h4 className="text-sm font-bold">Contato</h4>
+              <h4 className="text-sm font-bold text-white">Contato</h4>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2 text-muted-foreground">
+                <li className="flex items-center gap-2 text-white/80">
                   <Phone className="size-4" />
                   <span>(11) 5093-1836</span>
                 </li>
-                <li className="flex items-center gap-2 text-muted-foreground">
+                <li className="flex items-center gap-2 text-white/80">
                   <Mail className="size-4" />
                   <span>contato@onsmart.com.br</span>
                 </li>
-                <li className="flex items-center gap-2 text-muted-foreground">
+                <li className="flex items-center gap-2 text-white/80">
                   <MapPin className="size-4" />
                   <span>São Paulo, SP</span>
                 </li>
               </ul>
             </div>
             <div className="space-y-4">
-              <h4 className="text-sm font-bold">Soluções</h4>
+              <h4 className="text-sm font-bold text-white">Soluções</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-white/80 hover:text-white transition-colors">
                     Desenvolvimento Web
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-white/80 hover:text-white transition-colors">
                     Apps Mobile
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-white/80 hover:text-white transition-colors">
                     Consultoria Digital
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-white/80 hover:text-white transition-colors">
                     Cloud Computing
                   </Link>
                 </li>
               </ul>
             </div>
             <div className="space-y-4">
-              <h4 className="text-sm font-bold">Empresa</h4>
+              <h4 className="text-sm font-bold text-white">Empresa</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-white/80 hover:text-white transition-colors">
                     Carreiras
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-white/80 hover:text-white transition-colors">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-white/80 hover:text-white transition-colors">
                     Suporte
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="flex flex-col gap-4 sm:flex-row justify-between items-center border-t border-border/40 pt-8">
-            <p className="text-xs text-muted-foreground">
+          <div className="flex flex-col gap-4 sm:flex-row justify-between items-center border-t border-white/20 pt-8">
+            <p className="text-xs text-white/80">
               &copy; {new Date().getFullYear()} OnSmart Tech Solutions. Todos os direitos reservados.
             </p>
             <div className="flex gap-4">
-              <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="#" className="text-xs text-white/80 hover:text-white transition-colors">
                 Política de Privacidade
               </Link>
-              <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="#" className="text-xs text-white/80 hover:text-white transition-colors">
                 Termos de Uso
               </Link>
             </div>
